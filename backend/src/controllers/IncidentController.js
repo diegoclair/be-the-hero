@@ -28,8 +28,12 @@ module.exports = {
 
   async create(req,res) {
 
-    const {title, description, value} = req.body
+    let {title, description, value} = req.body
     const ong_id = req.headers.authorization;
+
+    value = value.replace(',', '.');
+    console.log(value);
+    
 
     const result = await connectDB('tab_incidents').insert({
       title,
